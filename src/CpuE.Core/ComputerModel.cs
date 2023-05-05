@@ -7,5 +7,6 @@
         public Motherboard Motherboard { get; set; }
 
         public Bios Bios { get; set; }
+        public Memory Memory { get; set; }
     }
 }

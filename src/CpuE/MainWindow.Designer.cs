@@ -118,11 +118,23 @@
             this.mbManufacturerLabel = new System.Windows.Forms.Label();
             this.mbManufacturerTextBox = new System.Windows.Forms.TextBox();
             this.memoryPage = new System.Windows.Forms.TabPage();
+            this.memoryGeneralGroupBox = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.memorySizeTextBox = new System.Windows.Forms.TextBox();
+            this.memoryTypelabel = new System.Windows.Forms.Label();
+            this.memoryTypeTextBox = new System.Windows.Forms.TextBox();
             this.spdPAge = new System.Windows.Forms.TabPage();
             this.graphicsPage = new System.Windows.Forms.TabPage();
             this.benchPage = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.memoryChannelsTextBox = new System.Windows.Forms.TextBox();
+            this.memoryTimimgsGroupBox = new System.Windows.Forms.GroupBox();
+            this.memoryDramFrequencyLabel = new System.Windows.Forms.Label();
+            this.memoryDramFrequencyTextBox = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.memoryFsbDramTextBox = new System.Windows.Forms.TextBox();
             this.containerTabControl.SuspendLayout();
             this.cpuPage.SuspendLayout();
             this.coresGroupBox.SuspendLayout();
@@ -137,7 +149,10 @@
             this.mainboardPage.SuspendLayout();
             this.biosGroupBox.SuspendLayout();
             this.mainboardGroupBox.SuspendLayout();
+            this.memoryPage.SuspendLayout();
+            this.memoryGeneralGroupBox.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.memoryTimimgsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // containerTabControl
@@ -1039,7 +1054,7 @@
             this.biosGroupBox.Controls.Add(this.biosBrandTextBox);
             this.biosGroupBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.biosGroupBox.Font = new System.Drawing.Font("Verdana", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.biosGroupBox.Location = new System.Drawing.Point(3, 66);
+            this.biosGroupBox.Location = new System.Drawing.Point(3, 3);
             this.biosGroupBox.Margin = new System.Windows.Forms.Padding(1);
             this.biosGroupBox.Name = "biosGroupBox";
             this.biosGroupBox.Size = new System.Drawing.Size(386, 85);
@@ -1109,12 +1124,12 @@
             // 
             // mainboardGroupBox
             // 
+            this.mainboardGroupBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.mainboardGroupBox.Controls.Add(this.mbVersionTextBox);
             this.mainboardGroupBox.Controls.Add(this.mbModellabel);
             this.mainboardGroupBox.Controls.Add(this.mbModeltextBox);
             this.mainboardGroupBox.Controls.Add(this.mbManufacturerLabel);
             this.mainboardGroupBox.Controls.Add(this.mbManufacturerTextBox);
-            this.mainboardGroupBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.mainboardGroupBox.Font = new System.Drawing.Font("Verdana", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.mainboardGroupBox.Location = new System.Drawing.Point(3, 3);
             this.mainboardGroupBox.Margin = new System.Windows.Forms.Padding(1);
@@ -1177,6 +1192,8 @@
             // 
             // memoryPage
             // 
+            this.memoryPage.Controls.Add(this.memoryTimimgsGroupBox);
+            this.memoryPage.Controls.Add(this.memoryGeneralGroupBox);
             this.memoryPage.Font = new System.Drawing.Font("Verdana", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.memoryPage.Location = new System.Drawing.Point(4, 21);
             this.memoryPage.Name = "memoryPage";
@@ -1184,6 +1201,65 @@
             this.memoryPage.TabIndex = 3;
             this.memoryPage.Text = "Memory";
             this.memoryPage.UseVisualStyleBackColor = true;
+            // 
+            // memoryGeneralGroupBox
+            // 
+            this.memoryGeneralGroupBox.Controls.Add(this.label9);
+            this.memoryGeneralGroupBox.Controls.Add(this.memoryChannelsTextBox);
+            this.memoryGeneralGroupBox.Controls.Add(this.label8);
+            this.memoryGeneralGroupBox.Controls.Add(this.memorySizeTextBox);
+            this.memoryGeneralGroupBox.Controls.Add(this.memoryTypelabel);
+            this.memoryGeneralGroupBox.Controls.Add(this.memoryTypeTextBox);
+            this.memoryGeneralGroupBox.Font = new System.Drawing.Font("Verdana", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.memoryGeneralGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.memoryGeneralGroupBox.Margin = new System.Windows.Forms.Padding(1);
+            this.memoryGeneralGroupBox.Name = "memoryGeneralGroupBox";
+            this.memoryGeneralGroupBox.Size = new System.Drawing.Size(386, 90);
+            this.memoryGeneralGroupBox.TabIndex = 5;
+            this.memoryGeneralGroupBox.TabStop = false;
+            this.memoryGeneralGroupBox.Text = "General";
+            // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("Verdana", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(27, 40);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 13);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "Size";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // memorySizeTextBox
+            // 
+            this.memorySizeTextBox.Cursor = System.Windows.Forms.Cursors.Default;
+            this.memorySizeTextBox.Font = new System.Drawing.Font("Verdana", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.memorySizeTextBox.Location = new System.Drawing.Point(80, 37);
+            this.memorySizeTextBox.Name = "memorySizeTextBox";
+            this.memorySizeTextBox.ReadOnly = true;
+            this.memorySizeTextBox.Size = new System.Drawing.Size(104, 19);
+            this.memorySizeTextBox.TabIndex = 23;
+            this.memorySizeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // memoryTypelabel
+            // 
+            this.memoryTypelabel.Font = new System.Drawing.Font("Verdana", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.memoryTypelabel.Location = new System.Drawing.Point(3, 18);
+            this.memoryTypelabel.Name = "memoryTypelabel";
+            this.memoryTypelabel.Size = new System.Drawing.Size(77, 13);
+            this.memoryTypelabel.TabIndex = 22;
+            this.memoryTypelabel.Text = "Type";
+            this.memoryTypelabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // memoryTypeTextBox
+            // 
+            this.memoryTypeTextBox.Cursor = System.Windows.Forms.Cursors.Default;
+            this.memoryTypeTextBox.Font = new System.Drawing.Font("Verdana", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.memoryTypeTextBox.Location = new System.Drawing.Point(80, 15);
+            this.memoryTypeTextBox.Name = "memoryTypeTextBox";
+            this.memoryTypeTextBox.ReadOnly = true;
+            this.memoryTypeTextBox.Size = new System.Drawing.Size(104, 19);
+            this.memoryTypeTextBox.TabIndex = 20;
+            this.memoryTypeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // spdPAge
             // 
@@ -1237,6 +1313,84 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("Verdana", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(199, 18);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(77, 13);
+            this.label9.TabIndex = 26;
+            this.label9.Text = "Channels #";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // memoryChannelsTextBox
+            // 
+            this.memoryChannelsTextBox.Cursor = System.Windows.Forms.Cursors.Default;
+            this.memoryChannelsTextBox.Font = new System.Drawing.Font("Verdana", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.memoryChannelsTextBox.Location = new System.Drawing.Point(276, 15);
+            this.memoryChannelsTextBox.Name = "memoryChannelsTextBox";
+            this.memoryChannelsTextBox.ReadOnly = true;
+            this.memoryChannelsTextBox.Size = new System.Drawing.Size(104, 19);
+            this.memoryChannelsTextBox.TabIndex = 25;
+            this.memoryChannelsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // memoryTimimgsGroupBox
+            // 
+            this.memoryTimimgsGroupBox.Controls.Add(this.label10);
+            this.memoryTimimgsGroupBox.Controls.Add(this.memoryFsbDramTextBox);
+            this.memoryTimimgsGroupBox.Controls.Add(this.memoryDramFrequencyLabel);
+            this.memoryTimimgsGroupBox.Controls.Add(this.memoryDramFrequencyTextBox);
+            this.memoryTimimgsGroupBox.Font = new System.Drawing.Font("Verdana", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.memoryTimimgsGroupBox.Location = new System.Drawing.Point(3, 95);
+            this.memoryTimimgsGroupBox.Margin = new System.Windows.Forms.Padding(1);
+            this.memoryTimimgsGroupBox.Name = "memoryTimimgsGroupBox";
+            this.memoryTimimgsGroupBox.Size = new System.Drawing.Size(316, 212);
+            this.memoryTimimgsGroupBox.TabIndex = 27;
+            this.memoryTimimgsGroupBox.TabStop = false;
+            this.memoryTimimgsGroupBox.Text = "Timings";
+            // 
+            // memoryDramFrequencyLabel
+            // 
+            this.memoryDramFrequencyLabel.Font = new System.Drawing.Font("Verdana", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.memoryDramFrequencyLabel.Location = new System.Drawing.Point(6, 15);
+            this.memoryDramFrequencyLabel.Name = "memoryDramFrequencyLabel";
+            this.memoryDramFrequencyLabel.Size = new System.Drawing.Size(189, 13);
+            this.memoryDramFrequencyLabel.TabIndex = 22;
+            this.memoryDramFrequencyLabel.Text = "DRAM Frequency";
+            this.memoryDramFrequencyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // memoryDramFrequencyTextBox
+            // 
+            this.memoryDramFrequencyTextBox.Cursor = System.Windows.Forms.Cursors.Default;
+            this.memoryDramFrequencyTextBox.Font = new System.Drawing.Font("Verdana", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.memoryDramFrequencyTextBox.Location = new System.Drawing.Point(201, 12);
+            this.memoryDramFrequencyTextBox.Name = "memoryDramFrequencyTextBox";
+            this.memoryDramFrequencyTextBox.ReadOnly = true;
+            this.memoryDramFrequencyTextBox.Size = new System.Drawing.Size(104, 19);
+            this.memoryDramFrequencyTextBox.TabIndex = 20;
+            this.memoryDramFrequencyTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label10
+            // 
+            this.label10.Font = new System.Drawing.Font("Verdana", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label10.Location = new System.Drawing.Point(6, 37);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(189, 13);
+            this.label10.TabIndex = 24;
+            this.label10.Text = "FSB:DRAM";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // memoryFsbDramTextBox
+            // 
+            this.memoryFsbDramTextBox.Cursor = System.Windows.Forms.Cursors.Default;
+            this.memoryFsbDramTextBox.Font = new System.Drawing.Font("Verdana", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.memoryFsbDramTextBox.Location = new System.Drawing.Point(201, 34);
+            this.memoryFsbDramTextBox.Name = "memoryFsbDramTextBox";
+            this.memoryFsbDramTextBox.ReadOnly = true;
+            this.memoryFsbDramTextBox.Size = new System.Drawing.Size(104, 19);
+            this.memoryFsbDramTextBox.TabIndex = 23;
+            this.memoryFsbDramTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1273,7 +1427,12 @@
             this.biosGroupBox.PerformLayout();
             this.mainboardGroupBox.ResumeLayout(false);
             this.mainboardGroupBox.PerformLayout();
+            this.memoryPage.ResumeLayout(false);
+            this.memoryGeneralGroupBox.ResumeLayout(false);
+            this.memoryGeneralGroupBox.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.memoryTimimgsGroupBox.ResumeLayout(false);
+            this.memoryTimimgsGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1375,6 +1534,18 @@
         private System.Windows.Forms.Label mbManufacturerLabel;
         private System.Windows.Forms.TextBox mbManufacturerTextBox;
         private System.Windows.Forms.TextBox mbVersionTextBox;
+        private System.Windows.Forms.GroupBox memoryGeneralGroupBox;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox memorySizeTextBox;
+        private System.Windows.Forms.Label memoryTypelabel;
+        private System.Windows.Forms.TextBox memoryTypeTextBox;
+        private System.Windows.Forms.GroupBox memoryTimimgsGroupBox;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox memoryFsbDramTextBox;
+        private System.Windows.Forms.Label memoryDramFrequencyLabel;
+        private System.Windows.Forms.TextBox memoryDramFrequencyTextBox;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox memoryChannelsTextBox;
     }
 }
 

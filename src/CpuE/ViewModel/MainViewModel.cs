@@ -25,17 +25,17 @@ namespace CpuE.ViewModel
 
         private void MainViewModel_OnUpdate(ComputerModel e)
         {
-            AllCpus = computerInformation.Update(AllCpus);
-            CoreSpeed = $"{AllCpus.Cpus.RootCpu.CpuClocks.CoreSpeed} MHz";
-            BusSpeed = $"{AllCpus.Cpus.RootCpu.CpuClocks.BusSpeed} MHz";
-            Multiplier = AllCpus.Cpus.RootCpu.CpuClocks.Multiplier;
+            Computer = computerInformation.Update(Computer);
+            CoreSpeed = $"{Computer.Cpus.RootCpu.CpuClocks.CoreSpeed} MHz";
+            BusSpeed = $"{Computer.Cpus.RootCpu.CpuClocks.BusSpeed} MHz";
+            Multiplier = Computer.Cpus.RootCpu.CpuClocks.Multiplier;
         }
 
         private void T_Elapsed(object sender, ElapsedEventArgs e)
         {
             //lock (_stdLock)
             //{
-                var allCPus = computerInformation.Update(AllCpus);
+                var allCPus = computerInformation.Update(Computer);
                 SyncContext.Post(ea => MainViewModel_OnUpdate(
                    allCPus
                 ), null);
@@ -46,7 +46,7 @@ namespace CpuE.ViewModel
 
         private CpuClocks cpuclocks;
 
-        public ComputerModel AllCpus
+        public ComputerModel Computer
         {
             get { return Get<ComputerModel>(); }
             set { Set(value); }
@@ -75,8 +75,8 @@ namespace CpuE.ViewModel
         {
            // computerInformation =  new WindowsManagementComputerInformation();
             computerInformation = new CpuIdComputerInformation();
-            AllCpus = computerInformation.GetAllData();
-            MainViewModel_OnUpdate(AllCpus);
+            Computer = computerInformation.GetAllData();
+            MainViewModel_OnUpdate(Computer);
             t.Start();
         }
     }

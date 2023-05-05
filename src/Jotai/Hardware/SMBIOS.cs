@@ -16,7 +16,7 @@ using System.Text;
 
 namespace Jotai.Hardware
 {
-   
+
     public class SMBIOS
     {
 
@@ -273,30 +273,30 @@ namespace Jotai.Hardware
             return r.ToString();
         }
 
-        
+
         public BIOSInformation BIOS
         {
             get { return biosInformation; }
         }
 
-        
+
         public SystemInformation System
         {
             get { return systemInformation; }
         }
 
-        
+
         public BaseBoardInformation Board
         {
             get { return baseBoardInformation; }
         }
-        
+
         public ProcessorInformation Processor
         {
             get { return processorInformation; }
         }
 
-        
+
         public MemoryDevice[] MemoryDevices
         {
             get { return memoryDevices; }
@@ -326,6 +326,14 @@ namespace Jotai.Hardware
                     return 0;
             }
 
+            protected int GetDWord(int offset)
+            {
+                if (offset + 3 < data.Length && offset >= 0)
+                    return (data[offset + 3] << 24) | (data[offset + 2] << 16) | (data[offset + 1] << 8) | data[offset];
+                else
+                    return 0;
+            }
+
             protected string GetString(int offset)
             {
                 if (offset < data.Length && data[offset] > 0 &&
@@ -348,7 +356,7 @@ namespace Jotai.Hardware
             public ushort Handle { get { return handle; } }
         }
 
-       
+
         public class BIOSInformation : Structure
         {
             private readonly string vendor;
@@ -372,16 +380,16 @@ namespace Jotai.Hardware
                 this.date = GetString(0x08);
             }
 
-            
+
             public string Vendor { get { return vendor; } }
 
-            
+
             public string Version { get { return version; } }
 
             public string Date { get { return date; } }
         }
 
-       
+
         public class SystemInformation : Structure
         {
             private readonly string manufacturerName;
@@ -412,23 +420,23 @@ namespace Jotai.Hardware
                 this.family = GetString(0x1A);
             }
 
-            
+
             public string ManufacturerName { get { return manufacturerName; } }
 
-            
+
             public string ProductName { get { return productName; } }
 
-            
+
             public string Version { get { return version; } }
 
-            
+
             public string SerialNumber { get { return serialNumber; } }
 
-            
+
             public string Family { get { return family; } }
         }
 
-       
+
         public class BaseBoardInformation : Structure
         {
 
@@ -458,21 +466,21 @@ namespace Jotai.Hardware
                 this.serialNumber = GetString(0x07).Trim();
             }
 
-            
+
             public string ManufacturerName { get { return manufacturerName; } }
 
-            
+
             public string ProductName { get { return productName; } }
 
-            
+
             public string Version { get { return version; } }
 
-            
+
             public string SerialNumber { get { return serialNumber; } }
 
         }
 
-       
+
         public class ProcessorInformation : Structure
         {
 
@@ -501,7 +509,43 @@ namespace Jotai.Hardware
             public int ExternalClock { get; private set; }
         }
 
-       
+        public enum MemoryType
+        {
+            Other = 0x01,
+            Unknown = 0x02,
+            DRAM = 0x03,
+            EDRAM = 0x04,
+            VRAM = 0x05,
+            SRAM = 0x06,
+            RAM = 0x07,
+            ROM = 0x08,
+            FLASH = 0x09,
+            EEPROM = 0x0A,
+            FEPROM = 0x0B,
+            EPROM = 0x0C,
+            CDRAM = 0x0D,
+            _3DRAM = 0x0E,
+            SDRAM = 0x0F,
+            SGRAM = 0x10,
+            RDRAM = 0x11,
+            DDR = 0x12,
+            DDR2 = 0x13,
+            DDR2_FB_DIMM = 0x14,
+            DDR3 = 0x18,
+            FBD2 = 0x19,
+            DDR4 = 0x1A,
+            LPDDR = 0x1B,
+            LPDDR2 = 0x1C,
+            LPDDR3 = 0x1D,
+            LPDDR4 = 0x1E,
+            LogicalNonVolatile = 0x1F,
+            HBM = 0x20,
+            HBM2 = 0x21,
+            DDR5 = 0x22,
+            LPDDR5 = 0x23,
+        }
+
+
         public class MemoryDevice : Structure
         {
 
@@ -511,6 +555,9 @@ namespace Jotai.Hardware
             private readonly string serialNumber;
             private readonly string partNumber;
             private readonly int speed;
+            private readonly int size;
+            private readonly int extendedSize;
+            private readonly MemoryType memoryType;
 
             public MemoryDevice(byte type, ushort handle, byte[] data,
               string[] strings)
@@ -522,31 +569,50 @@ namespace Jotai.Hardware
                 this.serialNumber = GetString(0x18).Trim();
                 this.partNumber = GetString(0x1A).Trim();
                 this.speed = GetWord(0x15);
+                this.memoryType = (MemoryType)GetByte(0x12);
+                this.size = GetWord(0xC);
+                this.extendedSize = GetDWord(0x1c);
             }
 
-            
+
             public string DeviceLocator { get { return deviceLocator; } }
 
-            
+
             public string BankLocator { get { return bankLocator; } }
 
-            
+
             public string Manufacturer { get { if (manufacturerName.StartsWith("Manufacturer")) return ""; else return manufacturerName; } }
 
             public string ManufacturerName { get { return manufacturerName; } }
 
-            
+
             public string Serial { get { if (serialNumber.StartsWith("SerNum")) return ""; else return serialNumber; } }
 
             public string SerialNumber { get { return serialNumber; } }
 
-            
+
             public string Model { get { if (partNumber.StartsWith("Array")) return ""; else return partNumber; } }
 
             public string PartNumber { get { return partNumber; } }
 
-            
+
             public int Speed { get { return speed; } }
+
+            public int Size { get { return size; } }
+
+            public int ExtendedSize { get { return extendedSize; } }
+
+            public long RealSize
+            {
+                get
+                {
+                    var significantBit = Size >> 15;
+                    long mulBytes = significantBit == 1 ? 1024 : 1048576;
+                    return (Size == 0x7FFF ? ExtendedSize : Size) * mulBytes;
+                }
+            }
+
+            public MemoryType MemoryType { get { return memoryType; } }
 
         }
     }

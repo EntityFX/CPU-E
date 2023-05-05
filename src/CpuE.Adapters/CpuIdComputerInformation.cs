@@ -29,6 +29,8 @@ namespace CpuE.Adapters
 
             var hwBios = hardware.OfType<Mainboard>()?.FirstOrDefault()?.BIOS;
 
+            var report = hwBios.GetReport();
+
             cpus = hwCpus.Select(cp =>
             {
                 var l1CacheData = cp.Caches.ContainsKey(CacheLevels.Level1) ? cp.Caches[CacheLevels.Level1].FirstOrDefault(ch => ch.CacheType == CacheType.Data) : null;
@@ -140,6 +142,26 @@ namespace CpuE.Adapters
                 };
             }
 
+            Memory memory = null;
+
+            if (hwBios?.BIOS != null)
+            {
+                var firstValuableMemory = hwBios.MemoryDevices.FirstOrDefault(m => m.MemoryType != SMBIOS.MemoryType.Unknown);
+
+                memory = new Memory()
+                {
+                    General = new MemoryGeneral()
+                    {
+                        Type = firstValuableMemory.MemoryType.ToString(),
+                        SizeBytes = hwBios.MemoryDevices.Sum(m => m.RealSize)
+                    },
+                    Timings = new Timings()
+                    {
+                        DRAMFrequency = firstValuableMemory.Speed
+                    }
+                };
+            }
+
             return new ComputerModel()
             {
                 Cpus = new AllCpus()
@@ -150,7 +172,8 @@ namespace CpuE.Adapters
                     TotalOfLogicalProcessors = cpus.Length > 1 ? (uint)cpus.Sum(c => c.NumberOfLogicalProcessors) : (cpus?[0]?.NumberOfLogicalProcessors ?? 0),
                 },
                 Motherboard = motherboard,
-                Bios = bios
+                Bios = bios,
+                Memory = memory
             };
         }
 
